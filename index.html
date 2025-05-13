@@ -1,7 +1,124 @@
-</h1>Introducing to Front-end Development</h1>
-<p>A front-end developer architects and develops client part of websites and applications (languags>:</P>
-<ul>
-<li style="color:red;">HTML</li>
-<li style="color:green;">CSS</li>
-<li style="color:blue;">JavaScript</li>
-</ul> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Glow Ring with Ripple Effect (Large)</title>
+  <style>
+    body {
+      margin: 0;
+      background: #050210;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .ring {
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: conic-gradient(
+        #ff0080,
+        #1ffc83,
+        #8820ff,
+        #ff0080
+      );
+      position: relative;
+      animation: spin 4s linear infinite;
+    }
+
+    .ring::before {
+      content: '';
+      position: absolute;
+      top: 30px; 
+      left: 30px;
+      width: 180px; 
+      height: 180px;
+      background: #050210;
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    .ring::after {
+      content: '';
+      position: absolute;
+      top: -60px; 
+      left: -60px;
+      width: 360px; 
+      height: 360px;
+      border-radius: 50%;
+      background: conic-gradient(
+        #ff0080,
+        #00ff73,
+        #7700ff,
+        #ff0080
+      );
+      filter: blur(90px) brightness(2);
+      z-index: -1;
+      animation: spin 5s linear infinite;
+      opacity: 0.3;
+    }
+
+    .center-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0px;
+      height: 0px;
+      background-color: #0a0615;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+          }
+
+    .ripple {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 15px;
+      height: 15px;
+      background-color: #1e1620;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: ripple 2s ease-out infinite;
+      opacity: 0.2;
+      z-index: 1;
+    }
+
+    @keyframes ripple {
+      0% {
+        width: 15px;
+        height: 15px;
+        opacity: 2;
+      }
+      50% {
+        width: 180px;
+        height: 180px;
+        opacity: 0.3;
+      }
+      100% {
+        width: 180px;
+        height: 180px;
+        opacity: 0.3;
+      }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes spin-reverse {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(-360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="ring">
+    <div class="center-circle">
+      <div class="ripple"></div>
+    </div>
+  </div>
+</body>
+</html>
